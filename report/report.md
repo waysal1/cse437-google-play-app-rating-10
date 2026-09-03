@@ -104,7 +104,11 @@ Raw text fields were parsed deterministically: `Size` → MB (M/k suffixes conve
 
 Simple linear correlations with `Rating`: `log_reviews` 0.183 (strongest), `days_since_update` −0.130 (more recently updated apps rate higher), `log_installs` 0.085, `Size_MB` 0.063, `Price_USD` −0.021 (weakest). Category-level differences are real but mild — median `Rating` varies only from about 4.2 to 4.5 across the largest categories (Figure 2).
 
-![Rating by category, 12 largest categories](../figures/03_rating_by_category.png){width=80%}
+![Rating by category, 12 largest categories](../figures/03_rating_by_category.png){width=68%}
+
+`log_reviews` shows the clearest, if still weak, relationship with `Rating` among all numeric features: apps with more reviews trend toward higher ratings, though the spread at every review level remains wide (Figure 3).
+
+![Rating vs log10(Reviews)](../figures/05_rating_vs_log_reviews.png){width=55%}
 
 ### 3.3 What the data says so far
 
@@ -126,7 +130,7 @@ Simple linear correlations with `Rating`: `log_reviews` 0.183 (strongest), `days
 
 ### 4.2 Dimensionality reduction
 
-PCA was fit on the training split only. Five components explain ~80% of variance, 9 components ~90%, 18 ~95% (Figure 3). **PCA was tested empirically via cross-validation and rejected**: it reduced Ridge's CV R² from 0.147 to 0.048, and Random Forest's from 0.130 to 0.096 (both fit on the same 100%-training-only comparison). PCA is **not** part of the final pipeline.
+PCA was fit on the training split only. Five components explain ~80% of variance, 9 components ~90%, 18 ~95% (Figure 4). **PCA was tested empirically via cross-validation and rejected**: it reduced Ridge's CV R² from 0.147 to 0.048, and Random Forest's from 0.130 to 0.096 (both fit on the same 100%-training-only comparison). PCA is **not** part of the final pipeline.
 
 ![PCA scree plot and cumulative explained variance](../figures/08_pca_explained_variance.png){width=85%}
 
@@ -181,11 +185,11 @@ An 80/20 train/test split (`random_state=42`) was performed **before** any learn
 
 ### 6.3 Results
 
-**Ridge:** best `alpha = 10`, CV R² = 0.1475. CV R² is essentially flat across a wide middle range of alpha and only degrades at extremes (Figure 4) — the ceiling is set by weak signal, not regularization strength.
+**Ridge:** best `alpha = 10`, CV R² = 0.1475. CV R² is essentially flat across a wide middle range of alpha and only degrades at extremes (Figure 5) — the ceiling is set by weak signal, not regularization strength.
 
 ![Ridge validation R² across regularization strength](../figures/09_ridge_alpha_tuning.png){width=70%}
 
-**Random Forest:** best configuration `n_estimators=200, max_depth=None, min_samples_split=10, min_samples_leaf=2, max_features=0.5`, CV R² = 0.1533 (up from 0.1138 with default hyperparameters — a real tuning gain, unlike Ridge). Very shallow trees (`max_depth=5`) clearly underperformed; depth stopped mattering much beyond 10–20 (Figure 5).
+**Random Forest:** best configuration `n_estimators=200, max_depth=None, min_samples_split=10, min_samples_leaf=2, max_features=0.5`, CV R² = 0.1533 (up from 0.1138 with default hyperparameters — a real tuning gain, unlike Ridge). Very shallow trees (`max_depth=5`) clearly underperformed; depth stopped mattering much beyond 10–20 (Figure 6).
 
 ![Random Forest tuning trends: n_estimators and max_depth](../figures/10_rf_tuning_trends.png){width=95%}
 
@@ -204,13 +208,13 @@ Evaluated once, after all model development:
 
 ### 7.2 Visualization
 
-![Predicted vs actual, both models](../figures/11_predicted_vs_actual.png){width=78%}
+![Predicted vs actual, both models](../figures/11_predicted_vs_actual.png){width=68%}
 
-![Residuals vs predicted, both models](../figures/12_residual_plot.png){width=78%}
+![Residuals vs predicted, both models](../figures/12_residual_plot.png){width=68%}
 
 ![RandomForest feature importance, top 15](../figures/14_rf_feature_importance.png){width=60%}
 
-Both models' predictions cluster in a narrow band (~3.8–4.5) regardless of the true rating (Figure 6), and residuals show a long tail of large negative values — true low-rating apps the models failed to identify (Figure 7). RandomForest importance (Figure 8) is dominated by `log_reviews` (0.274), `days_since_update` (0.188), `Size_MB` (0.164), and `log_installs` (0.130); `Category` dummies contribute smaller individual amounts. Ridge's largest-magnitude coefficients are `log_reviews` (+0.58) and `log_installs` (−0.51); this opposite-sign pair is a collinearity artifact (the two are highly correlated), not evidence that installs hurt ratings — RandomForest importance, unaffected by this sign-splitting, shows both contributing positively. The error-distribution histogram and full Ridge coefficient chart are saved in `figures/13_error_distribution.png` and `figures/15_ridge_coefficients.png`.
+Both models' predictions cluster in a narrow band (~3.8–4.5) regardless of the true rating (Figure 7), and residuals show a long tail of large negative values — true low-rating apps the models failed to identify (Figure 8). RandomForest importance (Figure 9) is dominated by `log_reviews` (0.274), `days_since_update` (0.188), `Size_MB` (0.164), and `log_installs` (0.130); `Category` dummies contribute smaller individual amounts. Ridge's largest-magnitude coefficients are `log_reviews` (+0.58) and `log_installs` (−0.51); this opposite-sign pair is a collinearity artifact (the two are highly correlated), not evidence that installs hurt ratings — RandomForest importance, unaffected by this sign-splitting, shows both contributing positively. The error-distribution histogram and full Ridge coefficient chart are saved in `figures/13_error_distribution.png` and `figures/15_ridge_coefficients.png`.
 
 ### 7.3 Error analysis
 

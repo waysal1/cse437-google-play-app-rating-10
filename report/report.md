@@ -6,10 +6,10 @@
 - **Course:** CSE437 Data Science
 - **Section:** >>> 05<<<
 - **Semester:** >>> Summer 2026 <<<
-- **Group:** 15
+- **Group:** 10
 - **Group members:**
   - Khondokar Waysal E Mustafa — ID 23341001
-- **GitHub repository:** >>>https://github.com/waysal1/CSE437--Google-Play-App-Rating---Group-15- <<<
+- **GitHub repository:** >>>https://github.com/waysal1/cse437-google-play-app-rating-10<<<
 - **Date:** September 3, 2026
 
 

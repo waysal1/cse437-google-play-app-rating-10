@@ -1,0 +1,6 @@
+model,representation,cv_r2_mean,cv_r2_std
+RandomForest,Full feature space (45 dims),0.13042453509101362,0.03193871431292474
+RandomForest,"PCA (9 components, ~90% variance)",0.09646721927260152,0.02265335924216048
+Ridge,Full feature space (45 dims),0.14713966540035833,0.013925984141657731
+Ridge,SelectKBest f_regression (22 features),0.14367803708328292,0.012626084831555407
+Ridge,"PCA (9 components, ~90% variance)",0.04817524341775945,0.006302224136507016

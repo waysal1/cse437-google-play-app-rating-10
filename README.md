@@ -1,6 +1,6 @@
 # Predicting Google Play Store App Ratings Using Machine Learning
 
-CSE437 Data Science — Group 15
+CSE437 Data Science — Group 10
 
 ## Problem Statement
 
@@ -24,7 +24,7 @@ License: Creative Commons Attribution 3.0 Unported (CC BY 3.0). See `data/README
 ## Repository Structure
 
 ```
-cse437-google-play-app-rating-15/
+cse437-google-play-app-rating-10/
 ├── README.md
 ├── requirements.txt
 ├── license.txt               # Dataset license, as distributed with the Kaggle download

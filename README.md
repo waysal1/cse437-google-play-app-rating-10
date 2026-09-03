@@ -55,32 +55,6 @@ cse437-google-play-app-rating-15/
 
 **Note on `src/`:** the faculty structure lists `src/` as optional, for functions reused across notebooks. This project's notebooks are self-contained and none import shared helper code, so `src/` is intentionally omitted rather than added as an empty placeholder.
 
-## Setup Instructions
-
-1. Clone the repository:
-   ```
-   git clone https://github.com/waysal1/cse437-google-play-app-rating-15.git
-   cd cse437-google-play-app-rating-15
-   ```
-2. Obtain the raw dataset (see `data/README.md` if `data/raw/googleplaystore.csv` is not already present).
-3. Set up the Python environment (below).
-4. Run the notebooks in order (below).
-
-## Python Environment Instructions
-
-Python 3.10+ is recommended. From the repository root:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-Then launch Jupyter from the repository root so the notebooks' relative paths (`../data/...`, `../figures/...`, `../models/...`) resolve correctly:
-
-```bash
-jupyter notebook notebooks/
-```
 
 ## Notebook Execution Order
 

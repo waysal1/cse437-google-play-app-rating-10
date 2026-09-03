@@ -1,0 +1,4 @@
+representation,n_dimensions,description
+Full engineered feature space,45,"6 numeric + one-hot encoded Category, Content Rating"
+"Selected features (f_regression, p < 0.05)",22,Univariate F-test on training data only; statistically significant features retained
+PCA-reduced (90% variance),9,"Principal components fit on training data only, retaining ~90% of total variance"

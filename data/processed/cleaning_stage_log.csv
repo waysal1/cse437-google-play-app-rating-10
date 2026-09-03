@@ -1,0 +1,7 @@
+stage,rows,cols,unique_apps,duplicate_app_rows,missing_rating,note
+0_raw_loaded,10841,13,9660,1181,1474,Unmodified raw file
+1_malformed_row_handled,10840,13,9659,1181,1474,1 row dropped: Category unrecoverable after shift correction
+2_deduplicated,9659,13,9659,0,1463,1181 duplicate App rows removed (kept max Reviews per App)
+3_target_valid,8196,13,8196,0,0,1463 rows dropped (missing target Rating)
+4_type_contentrating_checked,8196,13,8196,0,0,0 additional rows dropped (none expected — verified above)
+5_parsed,8196,17,8196,0,0,"Size_MB, Installs_num, Price_USD, Last_Updated_dt added; no rows dropped"

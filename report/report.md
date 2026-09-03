@@ -9,7 +9,7 @@
 - **Group:** 15
 - **Group members:**
   - Khondokar Waysal E Mustafa — ID 23341001
-- **GitHub repository:** >>>https://github.com/waysal1/cse437-google-play-app-rating-15 <<<
+- **GitHub repository:** >>>https://github.com/waysal1/CSE437--Google-Play-App-Rating---Group-15- <<<
 - **Date:** September 3, 2026
 
 
